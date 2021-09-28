@@ -1,0 +1,45 @@
+
+{% block title %}Article – {{ article.title }}{% endblock %}
+{# Run `composer require symfony/webpack-encore-bundle`
+   and uncomment the following Encore helpers to start using Symfony UX #}
+{% block stylesheets %}
+    <link rel='stylesheet' href="{{ asset('css/index.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+                integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+                crossorigin="anonymous"></script>
+    <script
+              src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+              integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+              crossorigin="anonymous"></script>
+{% endblock %}
+{% block body %}
+    <header>
+        <a href="{{ path('article_index') }}"><span id="about">Adriver</span></a>
+    </header>
+    <section id="list_articles">
+        <div id="best_articles">
+            <img id="loading" src="loading-buffering.gif" >
+                <div class="article_card">
+                    <div class="card_content">
+                        <div class="base_title">
+                            <span class="title">{{ article.title }}</span>
+                        </div>
+                        <div class="bellow_title">
+                            <span class="date_publication">{{ article.createdAt }}</span>
+                        </div>
+                        <div class="base_content">
+                            {{ article.body }}
+                        </div>
+                        <div class="button_section" >
+                            <a href="{{ path('article_delete', {slug: article.slug}) }}"><button class="button_read" type="button" >Supprimer</button></a>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </section>
+    
+{% endblock %}
